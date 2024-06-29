@@ -1,0 +1,9 @@
+{
+    "appBar":"Products",
+    "urunisim":"Banana",
+    "urunisim2":"Potato",
+    "urunisim3":"Pizza",
+    "urunFiyat":"20 $",
+    "buttonSepet":"Add to cart",
+    "buttonCik":"Exit Application"
+}
