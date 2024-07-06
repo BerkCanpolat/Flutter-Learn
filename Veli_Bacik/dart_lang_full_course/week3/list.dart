@@ -61,4 +61,22 @@ void main() {
       print("Bye");
     }
   }
+
+  List<dynamic> user = [1,'a', true];
+
+  for (var item in user) {
+    print(item);
+  }
+
+  List<String> userNames = ["Ali","Mehmet","Ayşe"];
+
+  userNames.contains('Berk');
+
+  for (var item in userNames) {
+    if (item == 'Berk') {
+      print("Var");
+    } else {
+      print("Yok");
+    }
+  }
 }
