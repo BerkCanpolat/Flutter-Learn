@@ -25,4 +25,12 @@ class User2 {
   User2(this.name, this._money, {this.age, this.city}) {
     userCode = (city ?? 'ist') + name;
   }
+
+
+}
+
+extension User2ControlExtension on User2 {
+  void controlName() {
+    print(name);
+  }
 }
