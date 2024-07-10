@@ -6,6 +6,8 @@ void main() {
 
   if (customerMouse.isCheckName('a4')) {
     print('aa');
+  } else {
+    print("yok");
   }
 }
 
