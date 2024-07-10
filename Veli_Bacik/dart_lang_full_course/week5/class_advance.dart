@@ -14,12 +14,15 @@ void main() {
   final _newType = user.moneyType is String ? user.moneyType : ""; (user.moneyType as String);
   print(_newType + 'A');
 
-  final b1 = BankaSinifi(50);
-  final b2 = BankaSinifi(50);
+  final b1 = BankaSinifi(40,'12');
+  final b2 = BankaSinifi(30,'12');
 
   print(b1 == b2);
 
   print(b1 + b2);
+
+  print(b1 == b2);
+  print(b1.toString());
 }
 
 // Classlarımızı eğer bu şekide tanımlarsak private olmuş oluyor.
@@ -42,10 +45,21 @@ class _User {
 
 class BankaSinifi {
   final int money;
+  final String id;
 
-  BankaSinifi(this.money);
+  BankaSinifi(this.money, this.id);
 
   int operator +(BankaSinifi newBank) {
     return this.money + newBank.money;
+  }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return super.toString() + 'berk';
+  }
+
+  bool operator == (Object object) {
+    return object is BankaSinifi && object.id == id;
   }
 }
