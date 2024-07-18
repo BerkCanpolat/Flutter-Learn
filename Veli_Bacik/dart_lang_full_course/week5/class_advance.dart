@@ -23,6 +23,13 @@ void main() {
 
   print(b1 == b2);
   print(b1.toString());
+
+  b1.money += 10;
+  print(b1.money);
+
+  b1..money += 10..updateName('BERK');
+
+print(b1);
 }
 
 // Classlarımızı eğer bu şekide tanımlarsak private olmuş oluyor.
@@ -43,11 +50,17 @@ class _User {
   }
 }
 
-class BankaSinifi {
-  final int money;
+// With => Birlikte kullanma anlamına gelir. Dahil etme
+class BankaSinifi with BankMixin {
+  int money;
   final String id;
+  String? name;
 
   BankaSinifi(this.money, this.id);
+
+  void updateName(String name) {
+    this.name = name;
+  }
 
   int operator +(BankaSinifi newBank) {
     return this.money + newBank.money;
@@ -59,7 +72,29 @@ class BankaSinifi {
     return super.toString() + 'berk';
   }
 
-  bool operator == (Object object) {
-    return object is BankaSinifi && object.id == id;
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is BankaSinifi && other.id == id;
+  }
+
+  @override
+  int get hashCode => money.hashCode ^ id.hashCode;
+  
+  @override
+  void sayBankHello() {
+    // TODO: implement sayBankHello
+    calculateMoney(money);
+  }
+}
+
+
+//Mixinler methodlar ve işlemi yapıp geri döndürürler.(Constructsız classlar olarak düşünebiliriz)
+
+mixin BankMixin {
+  void sayBankHello();
+  void calculateMoney(int money) {
+    print('Money');
   }
 }
