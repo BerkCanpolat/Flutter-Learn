@@ -49,14 +49,33 @@ void main() {
   carItems.add(CarModel(category: CarModels.mercedes, name: 'mercedes', money: 123123));
   carItems.sort((first, second) => first.money.compareTo(second.money));
 
+  calculateToUser(carItems);
   carItems.removeWhere((element) => element.category == CarModels.bmw || element.money < 30);
   print(carItems);
+
+
 
   
 }
 
+void calculateToUser(List<CarModel> items) {
+  final newItems = items.map((CarModel e)  {
+    if (e.category == CarModels.bmw) {
+      e.category = CarModels.yamaha;
+    }
+
+    if(e.isSecondHand) {
+      e.isSecondHand = false;
+    }
+
+    return e;
+
+  });
+  print(newItems);
+}
+
 class CarModel {
-  final CarModels category;
+  CarModels category;
   final String name;
   final double money;
   String? city;
