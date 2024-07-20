@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_full_learn/101/container_sizedbox_learn.dart';
+import 'package:flutter_full_learn/101/scaffold_learn.dart';
 import 'package:flutter_full_learn/101/text_learn_view.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: ContainerSizedBoxLearn()
+      home: ScaffoldLearnView()
     );
   }
 }
