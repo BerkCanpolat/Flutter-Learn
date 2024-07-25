@@ -14,7 +14,6 @@ class StatefullLearn extends StatefulWidget {
 class _StatefullLearnState extends State<StatefullLearn> {
   //Hayatı burada belirleriz. Değişiklikler burada olur
   int countValue = 0;
-  int _counterCustom = 0;
 
   void _updateCounter(bool isIncrement) {
     if (isIncrement) {

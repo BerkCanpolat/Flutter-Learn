@@ -24,7 +24,6 @@ class _TextfieldLearnState extends State<TextfieldLearn> {
         textInputAction: TextInputAction.next,
         minLines: 2,
         maxLines: 4,
-        
         decoration: _InputDecarotor().emailInput,
       ),
     );
@@ -54,6 +53,6 @@ class _InputDecarotor {
           fillColor: Colors.white,
           filled: true,
           iconColor: Colors.red,
-          labelStyle: TextStyle(color: Colors.red, fontSize: 24, fontWeight: FontWeight.bold)
+          labelStyle: TextStyle(color: Colors.red, fontSize: 24, fontWeight: FontWeight.bold),
         );
 }
