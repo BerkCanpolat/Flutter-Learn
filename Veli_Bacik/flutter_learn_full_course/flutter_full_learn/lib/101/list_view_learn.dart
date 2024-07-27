@@ -43,7 +43,7 @@ class _ListViewLearnState extends State<ListViewLearn> {
                 ),
                 IconButton(onPressed: (){}, icon: Icon(Icons.close)),
                 //xxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                FittedBox(
+                FittedBox(
                   child: Text(
                     'Merhaba',
                     style: Theme.of(context).textTheme.headlineLarge,
