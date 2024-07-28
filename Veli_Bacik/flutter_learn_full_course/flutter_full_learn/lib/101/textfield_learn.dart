@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_full_learn/demos/password_text_field_demos.dart';
 import 'package:flutter_full_learn/product/language/language_items.dart';
 
 class TextfieldLearn extends StatefulWidget {
@@ -14,17 +15,22 @@ class _TextfieldLearnState extends State<TextfieldLearn> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: TextField(
-        maxLength: 15,
-        buildCounter: (context, {required currentLength, required isFocused, required maxLength}) {
-          return _animatedContainer(currentLength);
-        },
-        keyboardType:  TextInputType.emailAddress,
-        autofillHints: [AutofillHints.email],
-        textInputAction: TextInputAction.next,
-        minLines: 2,
-        maxLines: 4,
-        decoration: _InputDecarotor().emailInput,
+      body: Column(
+        children: [
+          TextField(
+            maxLength: 15,
+            buildCounter: (context, {required currentLength, required isFocused, required maxLength}) {
+              return _animatedContainer(currentLength);
+            },
+            keyboardType:  TextInputType.emailAddress,
+            autofillHints: [AutofillHints.email],
+            textInputAction: TextInputAction.next,
+            minLines: 2,
+            maxLines: 4,
+            decoration: _InputDecarotor().emailInput,
+          ),
+          PasswordTextFieldDemos()
+        ],
       ),
     );
   }
