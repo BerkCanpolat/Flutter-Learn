@@ -14,4 +14,5 @@ class RoboTitle {
   static const createButtonSignUp = 'Sign Up';
   static const createRichTextHeadTitle = 'Already have an account?';
   static const createRichTextSubTitle = 'Sign In';
+  static const homeAppBarTitle = 'Robo Home Product';
 }

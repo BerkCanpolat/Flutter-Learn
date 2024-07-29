@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_button_special.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_mailtextfield.dart';
+import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_navigate_managers.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_padding.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_richtext.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_sign_ortext.dart';
@@ -8,9 +9,10 @@ import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_size.d
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_textfield.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_title.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/robo_colors.dart';
+import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/robo_home.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/robo_sign.dart';
 
-class RoboCreateAccount extends StatelessWidget {
+class RoboCreateAccount extends StatelessWidget with RoboNavigateManagers {
   const RoboCreateAccount({super.key});
 
   @override
@@ -41,7 +43,9 @@ class RoboCreateAccount extends StatelessWidget {
                 width: double.infinity,
                 height: RoboSize.homeButtonContainerSize,
                 child: RoboButtonSpecial(
-                  voidCallback: (){}, 
+                  voidCallback: (){
+                    roboNavigate(context, RoboHome());
+                  }, 
                   backColor: RoboColors.roboTextColor, 
                   color: RoboColors.roboButtonTextColor,
                   title: RoboTitle.createButtonSignUp,
