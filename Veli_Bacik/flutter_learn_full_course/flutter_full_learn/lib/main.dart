@@ -22,7 +22,11 @@ import 'package:flutter_full_learn/101/statefull_life_cycle_learn.dart';
 import 'package:flutter_full_learn/101/stateless_learn.dart';
 import 'package:flutter_full_learn/101/text_learn_view.dart';
 import 'package:flutter_full_learn/101/textfield_learn.dart';
+import 'package:flutter_full_learn/202/animated_learn.dart';
+import 'package:flutter_full_learn/202/form_learn_view.dart';
+import 'package:flutter_full_learn/202/image_learn_202.dart';
 import 'package:flutter_full_learn/202/model_learn_view.dart';
+import 'package:flutter_full_learn/202/oop_learn_view.dart';
 import 'package:flutter_full_learn/202/service/service_learn_get_view.dart';
 import 'package:flutter_full_learn/202/service/service_postLearn.dart';
 import 'package:flutter_full_learn/202/tabbar_learn.dart';
@@ -76,7 +80,7 @@ class MyApp extends StatelessWidget {
         )
       ),
       debugShowCheckedModeBanner: false,
-      home: RoboDemos()
+      home: FormLearnView()
     );
   }
 }

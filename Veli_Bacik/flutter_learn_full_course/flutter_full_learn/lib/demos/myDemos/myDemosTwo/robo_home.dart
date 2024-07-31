@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_navigate_managers.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboCore/robo_title.dart';
 import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/roboModel/robo_model.dart';
+import 'package:flutter_full_learn/demos/myDemos/myDemosTwo/robo_apihome_view.dart';
 
 class RoboHome extends StatefulWidget {
   const RoboHome({super.key});
@@ -9,7 +11,7 @@ class RoboHome extends StatefulWidget {
   State<RoboHome> createState() => _RoboHomeState();
 }
 
-class _RoboHomeState extends State<RoboHome> {
+class _RoboHomeState extends State<RoboHome> with RoboNavigateManagers {
   late final List<RoboModel> _item;
   @override
   void initState() {
@@ -23,6 +25,11 @@ class _RoboHomeState extends State<RoboHome> {
     return Scaffold(
       appBar: AppBar(
         title: Text(RoboTitle.homeAppBarTitle),
+        actions: [
+          IconButton(onPressed: (){
+            roboNavigate(context, RoboApihomeView());
+          }, icon: Icon(Icons.account_circle_outlined))
+        ],
       ),
       body: ListView.builder(
         scrollDirection: Axis.vertical,
