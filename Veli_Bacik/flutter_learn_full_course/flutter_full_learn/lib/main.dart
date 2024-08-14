@@ -34,6 +34,8 @@ import 'package:flutter_full_learn/202/service/service_postLearn.dart';
 import 'package:flutter_full_learn/202/sheet_learn.dart';
 import 'package:flutter_full_learn/202/tabbar_learn.dart';
 import 'package:flutter_full_learn/202/text_field_special_view.dart';
+import 'package:flutter_full_learn/303/lottie_learn.dart';
+import 'package:flutter_full_learn/303/reqrest_resource/view/reqres_view.dart';
 import 'package:flutter_full_learn/demos/color_demos_view.dart';
 import 'package:flutter_full_learn/demos/color_life_cycle_view.dart';
 import 'package:flutter_full_learn/demos/myDemos/mail_demos.dart';
@@ -83,7 +85,7 @@ class MyApp extends StatelessWidget {
         )
       ),
       debugShowCheckedModeBanner: false,
-      home: SheetLearn()
+      home: LottieLearn()
     );
   }
 }
