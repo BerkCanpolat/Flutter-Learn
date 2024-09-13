@@ -6,14 +6,16 @@ import 'package:bloc_zero_to_hero/bloc/counter_bloc/bloc_counter_state.dart';
 class BlocCounter extends Bloc<BlocCounterEvent, BlocCounterState> {
   BlocCounter() : super(const BlocCounterState()) {
     on<CounterEvent>(_incrementCounter,);
-    on<CounterRemoveEvent>((event, emit) {
-      if(state.counter! > 0) {
-        emit(state.copyWith(counter: state.counter! - 1));
-      }
-    },);
+    on<CounterRemoveEvent>(_deIncrementCounter,);
   }
 
-  FutureOr<void> _incrementCounter(event, emit) {
+  FutureOr<void> _deIncrementCounter(CounterRemoveEvent event, Emitter<BlocCounterState> emit) {
+    if(state.counter! > 0) {
+      emit(state.copyWith(counter: state.counter! - 1));
+    }
+  }
+
+  FutureOr<void> _incrementCounter(CounterEvent event, Emitter<BlocCounterState> emit) {
     if(state.counter == null) {
       emit(state.copyWith(counter: state.counter ?? 0));
     } else {

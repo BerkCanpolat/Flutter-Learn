@@ -10,7 +10,9 @@ class CounterHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Counter Bloc View'),
+      ),
       body: Column(
         children: [
           BlocBuilder<BlocCounter, BlocCounterState>(
