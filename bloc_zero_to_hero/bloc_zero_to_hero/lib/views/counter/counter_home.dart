@@ -11,7 +11,7 @@ class CounterHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Counter Bloc View'),
+        title: const Text('Counter Bloc View'),
       ),
       body: Column(
         children: [
@@ -22,10 +22,10 @@ class CounterHome extends StatelessWidget {
           ),
           ElevatedButton(onPressed: (){
             context.read<BlocCounter>().add(CounterEvent());
-          }, child: Text('Increment')),
+          }, child: const Text('Increment')),
           ElevatedButton(onPressed: (){
             context.read<BlocCounter>().add(CounterRemoveEvent());
-          }, child: Text('Deincrement')),
+          }, child: const Text('Deincrement')),
         ],
       ),
     );

@@ -9,7 +9,7 @@ class SwitchSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Switch Slider View'),
+        title: const Text('Switch Slider View'),
       ),
       body: Column(
         children: [
@@ -17,7 +17,7 @@ class SwitchSlider extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Notifications'),
+              const Text('Notifications'),
               BlocBuilder<SwitchSliderBloc, SwitchSliderState>(
                 buildWhen: (previous, current) => previous.isSwitch != current.isSwitch,
                 builder: (context, state) {
