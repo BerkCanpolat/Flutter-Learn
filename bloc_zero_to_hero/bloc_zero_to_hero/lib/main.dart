@@ -1,8 +1,10 @@
 import 'package:bloc_zero_to_hero/bloc/counter_bloc/bloc_counter.dart';
+import 'package:bloc_zero_to_hero/bloc/fav_bloc/fav_bloc.dart';
 import 'package:bloc_zero_to_hero/bloc/image_picker_bloc/image_bloc.dart';
 import 'package:bloc_zero_to_hero/bloc/switch_slider_bloc/switch_slider_bloc.dart';
+import 'package:bloc_zero_to_hero/repository/fav_repository.dart';
 import 'package:bloc_zero_to_hero/utility/image_utility.dart';
-import 'package:bloc_zero_to_hero/views/image_picker_page/image_picker_view.dart';
+import 'package:bloc_zero_to_hero/views/favourite_page/fav_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +21,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => BlocCounter()),
         BlocProvider(create: (context) => SwitchSliderBloc()),
-        BlocProvider(create: (context) => ImageBloc(ImageUtility()))
+        BlocProvider(create: (context) => ImageBloc(ImageUtility())),
+        BlocProvider(create: (context) => FavBloc(FavRepository()))
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const ImagePickerView()
+        home: const FavView()
       ),
     );
   }
