@@ -5,7 +5,7 @@ import 'package:bloc_zero_to_hero/bloc/post_bloc/post_bloc.dart';
 import 'package:bloc_zero_to_hero/bloc/switch_slider_bloc/switch_slider_bloc.dart';
 import 'package:bloc_zero_to_hero/repository/fav_repository.dart';
 import 'package:bloc_zero_to_hero/utility/image_utility.dart';
-import 'package:bloc_zero_to_hero/views/post_page/post_view.dart';
+import 'package:bloc_zero_to_hero/views/login_page/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const PostView()
+        home: const LoginView()
       ),
     );
   }
