@@ -1,8 +1,14 @@
 import 'package:bloc_clean_architecture_login_api/config/routes/routes.dart';
 import 'package:bloc_clean_architecture_login_api/config/routes/routes_name.dart';
+import 'package:bloc_clean_architecture_login_api/repository/auth/login_http_api_repository.dart';
+import 'package:bloc_clean_architecture_login_api/repository/auth/login_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+GetIt getIt = GetIt.instance;
 
 void main() {
+  servicesLocator();
   runApp(const MyApp());
 }
 
@@ -21,4 +27,8 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: Routes.generateRoute,
     );
   }
+}
+
+void servicesLocator() {
+  getIt.registerLazySingleton<LoginRepository>(() => LoginHtppApiRepository());
 }
