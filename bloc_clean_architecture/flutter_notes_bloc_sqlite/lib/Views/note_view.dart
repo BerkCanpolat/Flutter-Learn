@@ -5,6 +5,7 @@ import 'package:flutter_notes_bloc_sqlite/note_bloc/note_bloc.dart';
 import 'package:flutter_notes_bloc_sqlite/note_bloc/note_event.dart';
 import 'package:flutter_notes_bloc_sqlite/note_bloc/note_state.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:intl/intl.dart';
 
 class AllNotes extends StatefulWidget {
   const AllNotes({super.key});
@@ -40,12 +41,27 @@ class _AllNotesState extends State<AllNotes> {
                 ), 
               itemCount: state.allNotes.length,
               itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Text(state.allNotes[index].title, style: TextStyle(color: Colors.black),),
-                    Text(state.allNotes[index].content, style: TextStyle(color: Colors.black),),
-                    Text(state.allNotes[index].createdAt, style: TextStyle(color: Colors.black),),
-                  ],
+                return Container(
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.amberAccent.withOpacity(.3),
+                    borderRadius: BorderRadius.circular(8)
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(state.allNotes[index].title, style: TextStyle(color: Colors.black),),
+                      Text(state.allNotes[index].content, style: TextStyle(color: Colors.black),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(dateFormat(state.allNotes[index].createdAt), style: TextStyle(color: Colors.black),),
+                          IconButton(onPressed: (){}, icon: Icon(Icons.delete))
+                        ],
+                      )
+                    ],
+                  ),
                 );
               },
             );
@@ -62,5 +78,10 @@ class _AllNotesState extends State<AllNotes> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  String dateFormat(String date) {
+    final DateFormat dateFormat = DateFormat("H:mm aa");
+    return dateFormat.format(DateTime.parse(date));
   }
 }
