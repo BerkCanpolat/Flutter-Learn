@@ -9,8 +9,14 @@ class Databasehelper {
   Future<Database> initDatabase() async {
     final databasePath = await getApplicationDocumentsDirectory();
     final path = join(databasePath.path, databaseName);
-    return openDatabase(path, version: 1, onCreate: (db, version) async {
+    return openDatabase(path, version: 2, onCreate: (db, version) async {
       await db.execute(Tables.noteTable);
-    });
+    },
+    onUpgrade: (db, oldVersion, newVersion) async {
+        // Veritabanı güncellendiğinde tabloyu silip yeniden oluşturur.
+        await db.execute("DROP TABLE IF EXISTS ${Tables.noteTableName}");
+        await db.execute(Tables.noteTable); // Yeni tabloyu oluştur
+    }
+    );
   }
 }

@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS $noteTableName(
 noteId INTEGER PRIMARY KEY AUTOINCREMENT,
 title TEXT,
 content TEXT,
-createdAT Text
+createdAt Text
   ) ''';
 }
