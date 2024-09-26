@@ -42,10 +42,10 @@ class DeleteNoteEvent extends NoteEvent{
 
 /// GET NOTE BY ID EVENT
 class GetByIdNoteEvent extends NoteEvent{
-  final Notes notes;
-  const GetByIdNoteEvent(this.notes);
+  final int id;
+  const GetByIdNoteEvent(this.id);
    @override
-  List<Object?> get props => [notes];
+  List<Object?> get props => [id];
 }
 
 

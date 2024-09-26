@@ -34,5 +34,43 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         emit(FailureState(e.toString()));
       }
     },);
+
+    on<GetByIdNoteEvent>((event, emit) async {
+      try {
+        final notes = await repository.getNoyById(event.id);
+        emit(GetNoteByIdState(notes));
+      } catch (e) {
+        emit(FailureState(e.toString()));
+      }
+    },);
+
+    on<UpdateNoteEvent>((event, emit) async {
+      try {
+        final note = await repository.updateNote(Notes(
+          noteId: event.notes.noteId,
+          title: event.notes.title, 
+          content: event.notes.content, 
+          createdAt: event.notes.createdAt
+          ));
+          if(note > 0) {
+            emit(SuccessNoteUpdate());
+            add(GetAllNoteEvent());
+          }
+      } catch (e) {
+        emit(FailureState(e.toString()));
+      }
+    },);
+
+    on<DeleteNoteEvent>((event, emit) async {
+      try {
+        final notes = await repository.deleteNot(event.id);
+        if(notes > 0) {
+          emit(SuccessNoteDelete());
+          add(GetAllNoteEvent());
+        }
+      } catch (e) {
+        emit(FailureState(e.toString()));
+      }
+    },);
   }
 }
