@@ -16,7 +16,10 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
     'Neeta',
     'Sarah',
     'Natasha',
-    'Robert'
+    'Robert',
+    'Thomas',
+    'Star Lord',
+    'Claire'
   ];
   @override
   Widget build(BuildContext context) {
@@ -97,7 +100,10 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: ListTile(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ChatDetails()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ChatDetails(
+                        index: index + 1,
+                        name: people[index],
+                      )));
                     },
                     leading: Container(
                       decoration: BoxDecoration(
@@ -106,7 +112,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
-                        child: Image.asset("assets/${index + 10}.png"),
+                        child: Image.asset("assets/${index + 1}.png"),
                       )
                     ),
                     title: Text(
