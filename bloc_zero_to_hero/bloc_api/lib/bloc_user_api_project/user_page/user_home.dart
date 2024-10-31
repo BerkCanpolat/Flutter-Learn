@@ -2,7 +2,6 @@ import 'package:bloc_api/bloc_user_api_project/repository/repository_user.dart';
 import 'package:bloc_api/bloc_user_api_project/user_bloc/user_bloc.dart';
 import 'package:bloc_api/bloc_user_api_project/user_bloc/user_event.dart';
 import 'package:bloc_api/bloc_user_api_project/user_bloc/user_state.dart';
-import 'package:bloc_api/bloc_user_api_project/user_model/user_model.dart';
 import 'package:bloc_api/bloc_user_api_project/user_page/user_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,10 +14,17 @@ class UserHome extends StatefulWidget {
 }
 
 class _UserHomeState extends State<UserHome> {
+  late UserBloc userBloc;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userBloc = UserBloc(UserRepository())..add(LoadUserEvent());
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserBloc(RepositoryProvider.of<UserRepository>(context))..add(LoadUserEvent()),
+      create: (context) => userBloc,
       child: Scaffold(
         appBar: AppBar(
           title: Text('User Home'),
@@ -30,33 +36,37 @@ class _UserHomeState extends State<UserHome> {
             );
            }
            if(state is UserLoadedState) {
-            List<UserModel> userList = state.user;
+            final userList = state.user;
+            final u = userList.data;
             return ListView.builder(
-              itemCount: userList.length,
+              itemCount: u.length,
               itemBuilder: (_, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetailPage(user: userList[index])));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetailPage(user: u[index])));
                   },
                   child: Card(
                     color: Colors.blue,
                     elevation: 4,
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     child: ListTile(
-                      title: Text(userList[index].first_name, style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      title: Text(u[index].first_name, style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: Colors.white
                       ),),
-                      subtitle: Text(userList[index].last_name, style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      subtitle: Text(u[index].last_name, style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: Colors.white
                       ),),
                       trailing: CircleAvatar(
-                        backgroundImage: NetworkImage(userList[index].avatar),
+                        backgroundImage: NetworkImage(u[index].avatar),
                       ),
                     ),
                   ),
                 );
               },
             );
+           }
+           if(state is UserErrorState) {
+            return const Center(child: Text('ERROR'),);
            }
            return Container();
           },

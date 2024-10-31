@@ -23,3 +23,16 @@ class UserModel {
     );
   }
 }
+
+class UserDataModel {
+  final List<UserModel> data;
+
+  UserDataModel({required this.data});
+
+  factory UserDataModel.fromJson(Map<String,dynamic> json) {
+    final userData = json['data'] as List;
+    return UserDataModel(
+      data: userData.map((e) => UserModel.fromJson(e)).toList(),
+    );
+  }
+}
