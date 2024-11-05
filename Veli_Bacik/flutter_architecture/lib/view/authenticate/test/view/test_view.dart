@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/base/state/base_state.dart';
 import 'package:flutter_architecture/core/base/view/base_widget.dart';
+import 'package:flutter_architecture/core/constants/enums/locale_keys_enum.dart';
 import 'package:flutter_architecture/core/extension/string_extension.dart';
+import 'package:flutter_architecture/core/init/cache/locale_manager.dart';
 import 'package:flutter_architecture/core/init/lang/lang_manager.dart';
 import 'package:flutter_architecture/core/init/lang/locale_keys.g.dart';
 import 'package:flutter_architecture/view/authenticate/test/viewmodel/test_view_model.dart';
@@ -30,6 +32,7 @@ class _TestViewState extends BaseState<TestView> {
 
   Widget get scaffoldBody => Scaffold(
     appBar: AppBar(
+      leading: Text(LocaleManager.instance.getStringValue(PreferencesKeys.TOKEN)),
       title: textWelcomeWidget(),
     actions: [
       iconButtonChangeTheme()
