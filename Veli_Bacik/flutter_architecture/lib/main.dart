@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/constants/app/app_constants.dart';
 import 'package:flutter_architecture/core/init/lang/lang_manager.dart';
+import 'package:flutter_architecture/core/init/navigaion/navigation_route.dart';
+import 'package:flutter_architecture/core/init/navigaion/navigation_service.dart';
 import 'package:flutter_architecture/core/init/notifier/provider_list.dart';
 import 'package:flutter_architecture/core/init/notifier/theme_notifier.dart';
 import 'package:flutter_architecture/view/authenticate/test/view/test_view.dart';
@@ -34,7 +36,9 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: TestView()
+      home: TestView(),
+      onGenerateRoute: NavigationRoute.instance.generateRoute,
+      navigatorKey: NavigationService.instance.navigatorKey,
     );
   }
 }
