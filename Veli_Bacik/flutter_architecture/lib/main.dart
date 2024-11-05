@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/constants/app/app_constants.dart';
+import 'package:flutter_architecture/core/init/cache/locale_manager.dart';
 import 'package:flutter_architecture/core/init/lang/lang_manager.dart';
 import 'package:flutter_architecture/core/init/navigaion/navigation_route.dart';
 import 'package:flutter_architecture/core/init/navigaion/navigation_service.dart';
@@ -12,6 +13,7 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  LocaleManager.prefrencesInit();
   runApp(MultiProvider(
     providers: [
       ...ApplicationProvider.instance.dependItems
