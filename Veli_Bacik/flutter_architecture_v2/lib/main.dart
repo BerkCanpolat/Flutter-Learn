@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_v2/feature/home/view/home_view.dart';
 import 'package:flutter_architecture_v2/product/init/application_initialize.dart';
-import 'package:flutter_architecture_v2/product/init/config/app_environment.dart';
-import 'package:flutter_architecture_v2/product/init/language/locale_keys.g.dart';
 import 'package:flutter_architecture_v2/product/init/product_localization.dart';
-import 'package:flutter_architecture_v2/product/utility/constants/enums/locales.dart';
+import 'package:flutter_architecture_v2/product/init/theme/custom_dark_theme.dart';
+import 'package:flutter_architecture_v2/product/init/theme/custom_light_theme.dart';
 
 Future<void> main() async {
   await ApplicationInitialize().make();
@@ -21,21 +21,10 @@ class _MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       title: 'Material App',
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(onPressed: (){}, child: Text(AppEnvironmentItems.baseUrl.value)),
-            Text('Change Language'),
-            ElevatedButton(
-              onPressed: (){
-                ProductLocalization.updateLanguage(context: context, value: Locales.tr);
-              }, 
-              child: const Text(LocaleKeys.general_button_save).tr(),
-            )
-          ],
-        ),
-      )
+      theme: CustomLightTheme().themeData,
+      darkTheme: CustomDarkTheme().themeData,
+      themeMode: ThemeMode.light,
+      home: HomeView(),
     );
   }
 }
