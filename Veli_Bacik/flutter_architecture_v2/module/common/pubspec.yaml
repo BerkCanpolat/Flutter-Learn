@@ -1,7 +1,7 @@
 name: common
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+homepage: "none"
 
 environment:
   sdk: ^3.5.3
@@ -10,11 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  very_good_analysis: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
