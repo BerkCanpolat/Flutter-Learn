@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_v2/feature/home/view/mixin/home_view_mixin.dart';
 import 'package:flutter_architecture_v2/product/init/config/app_environment.dart';
 import 'package:flutter_architecture_v2/product/init/language/locale_keys.g.dart';
 import 'package:flutter_architecture_v2/product/init/product_localization.dart';
@@ -22,7 +23,8 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> with HomeViewMixin {
+  List<User> _users = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +33,17 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Expanded(child: 
+              ListView.builder(
+                itemCount: _users.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(_users[index].title ?? ''),
+                    subtitle: Text(_users[index].body ?? ''),
+                  );
+                },
+              ),
+            ),
               BoldTextButton(onPressed: (){}, child: Text('Text Button')),
               CircleAvatar(
                 backgroundImage: NetworkImage(''.ext.randomImage),
@@ -57,6 +70,12 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(onPressed: () async {
+          _users = await loginService.users();
+          setState(() {
+            
+          });
+        }),
       );
   }
 }
