@@ -1,8 +1,9 @@
+import 'package:flutter_architecture_v2/product/service/interface/authenction_operation.dart';
 import 'package:flutter_architecture_v2/product/service/manager/product_service_path.dart';
 import 'package:gen/gen.dart';
 import 'package:vexana/vexana.dart';
 
-final class LoginService {
+final class LoginService extends AuthenctionOperation{
   final INetworkManager<EmptyModel> _serviceManager;
 
   LoginService(INetworkManager<EmptyModel> productServiceManager) : _serviceManager = productServiceManager;  

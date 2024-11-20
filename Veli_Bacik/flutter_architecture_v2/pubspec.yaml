@@ -19,7 +19,7 @@ dependencies:
   vexana: ^5.0.1
 
   # State
-  flutter_riverpod: ^2.6.1
+  flutter_bloc: ^8.1.6
   
 
   # Config
