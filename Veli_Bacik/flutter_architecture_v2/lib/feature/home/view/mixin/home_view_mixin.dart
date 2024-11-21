@@ -26,6 +26,6 @@ mixin HomeViewMixin on BaseState<HomeView> {
 
     _homeViewModel = HomeViewModel(operationService: LoginService(productServiceManager), userCacheOperation: ProductStateItems.productCache.userCacheOperation);
 
-    _homeViewModel.fetchUsers();
+    //_homeViewModel.fetchUsers();
   }
 }

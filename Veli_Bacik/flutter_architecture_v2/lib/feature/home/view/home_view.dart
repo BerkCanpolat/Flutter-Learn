@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_v2/feature/home/view/mixin/home_view_mixin.dart';
+import 'package:flutter_architecture_v2/feature/home/view/widget/home_user_list.dart';
 import 'package:flutter_architecture_v2/feature/home/view_model/home_view_model.dart';
 import 'package:flutter_architecture_v2/feature/home/view_model/state/home_state.dart';
 import 'package:flutter_architecture_v2/product/state/base/base_state.dart';
@@ -32,7 +33,7 @@ class _HomeViewState extends BaseState<HomeView> with HomeViewMixin {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: _UserList(),
+                child: _UserBlocList(),
               ),
               // BoldTextButton(onPressed: () {}, child: Text('Text Button')),
               // CircleAvatar(
@@ -81,8 +82,8 @@ class _HomeViewState extends BaseState<HomeView> with HomeViewMixin {
   }
 }
 
-final class _UserList extends StatelessWidget {
-  const _UserList({
+final class _UserBlocList extends StatelessWidget {
+  const _UserBlocList({
     super.key,
   });
 
@@ -97,15 +98,7 @@ final class _UserList extends StatelessWidget {
         },
         builder: (context, state) {
           if (state.isEmpty) return const SizedBox.shrink();
-          return ListView.builder(
-            itemCount: state.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(state[index].title ?? ''),
-                subtitle: Text(state[index].body ?? ''),
-              );
-            },
-          );
+          return HomeUserList(users: state);
         },
       ),
     );
