@@ -6,7 +6,10 @@ class _HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      actions: const [
+      actions: [
+        IconButton(
+          onPressed: (){}, 
+          icon: Icon(Icons.details)),
         _Loading()
       ],
     );
