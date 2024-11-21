@@ -90,7 +90,6 @@ final class _UserList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<HomeViewModel, HomeState>(
       listener: (context, state) {
-       print(state.users);
       },
       child: BlocSelector<HomeViewModel, HomeState, List<User>>(
         selector: (state) {

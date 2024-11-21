@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_architecture_v2/product/init/config/app_environment.dart';
+import 'package:flutter_architecture_v2/product/state/container/product_state_Items.dart';
 import 'package:flutter_architecture_v2/product/state/container/product_state_container.dart';
 import 'package:kartal/kartal.dart';
 import 'package:logger/web.dart';
@@ -39,8 +40,10 @@ final class ApplicationInitialize {
       /// Todo: add custom logger
       Logger().e(details.exceptionAsString());
     };
+
     AppEnvironment.general();
     ProductStateContainer.setup();
+    ProductStateItems.productCache.init();
     // Dependency initialize
     // Envied
   }

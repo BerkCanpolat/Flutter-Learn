@@ -25,5 +25,7 @@ mixin HomeViewMixin on BaseState<HomeView> {
     ProductStateItems.productServiceManager.listenErrorState(onErrorStatus: _productNetworkErrorManager.handleError);
 
     _homeViewModel = HomeViewModel(operationService: LoginService(productServiceManager));
+
+    _homeViewModel.fetchUsers();
   }
 }

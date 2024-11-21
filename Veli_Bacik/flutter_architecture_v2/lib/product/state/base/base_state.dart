@@ -7,5 +7,4 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   ProductServiceManager get productServiceManager => ProductStateItems.productServiceManager;
 
   ProductViewModel get productViewModel => ProductStateItems.productViewModel;
-  //ProductViewModel get productViewModel => context.read<ProductViewModel>();
 }
