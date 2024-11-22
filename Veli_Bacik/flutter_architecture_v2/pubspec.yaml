@@ -34,9 +34,6 @@ dependencies:
 
   # Navigation
   auto_route: ^7.8.4
-
-  ui_widgets:
-    path: module/ui_widgets
   
   # Modules
   gen:
@@ -45,6 +42,8 @@ dependencies:
     path: module/common
   core:
     path: module/core
+  ui_widgets:
+    path: module/ui_widgets
 
   cupertino_icons: ^1.0.8
 

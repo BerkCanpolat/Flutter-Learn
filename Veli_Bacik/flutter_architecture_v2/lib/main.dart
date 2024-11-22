@@ -8,6 +8,7 @@ import 'package:flutter_architecture_v2/product/init/theme/custom_light_theme.da
 import 'package:flutter_architecture_v2/product/navigation/app_router.dart';
 import 'package:flutter_architecture_v2/product/state/view_model/product_view_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ui_widgets/ui_widgets.dart';
 
 Future<void> main() async {
   await ApplicationInitialize().make();
@@ -25,6 +26,7 @@ class _MyApp extends StatelessWidget {
 
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
+      builder: CustomResponsive.build,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

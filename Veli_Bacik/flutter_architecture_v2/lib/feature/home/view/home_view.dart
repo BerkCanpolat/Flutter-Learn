@@ -8,6 +8,8 @@ import 'package:flutter_architecture_v2/product/state/base/base_state.dart';
 import 'package:flutter_architecture_v2/product/widget/padding/project_padding.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gen/gen.dart';
+import 'package:ui_widgets/ui_widgets.dart';
+import 'package:kartal/kartal.dart';
 
 part 'widget/home_app_bar.dart';
 
@@ -29,9 +31,10 @@ class _HomeViewState extends BaseState<HomeView> with HomeViewMixin {
         appBar: const _HomeAppBar(),
         body: Padding(
           padding: const ProjectPadding.allNormal() + const EdgeInsets.all(10),
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              AdaptAllView(phone: Text(''.ext.version), tablet: Text(''.ext.version), desktop: Text(''.ext.version)),
               Expanded(
                 child: _UserBlocList(),
               ),
