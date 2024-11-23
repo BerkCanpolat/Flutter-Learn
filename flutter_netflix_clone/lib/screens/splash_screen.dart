@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_netflix_clone/widgets/bottom_nav_bar.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 3), () {
-      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
     });
   }
 
