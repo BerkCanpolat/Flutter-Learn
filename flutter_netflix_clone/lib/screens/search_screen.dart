@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_netflix_clone/common/utils.dart';
 import 'package:flutter_netflix_clone/models/movie_recommendation_models.dart';
 import 'package:flutter_netflix_clone/models/search_movie_model.dart';
+import 'package:flutter_netflix_clone/screens/movie_detailed_screen.dart';
 import 'package:flutter_netflix_clone/services/api_services.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -31,7 +32,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     popularMovies = apiServices.getPopularMovies();
   }
@@ -39,7 +39,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     searchController.dispose();
     super.dispose();
   }
@@ -51,11 +50,11 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Column(
             children: [
               CupertinoSearchTextField(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 controller: searchController,
-                prefixIcon: Icon(Icons.search, color: Colors.grey,),
-                suffixIcon: Icon(Icons.cancel, color: Colors.grey,),
-                style: TextStyle(
+                prefixIcon: const Icon(Icons.search, color: Colors.grey,),
+                suffixIcon: const Icon(Icons.cancel, color: Colors.grey,),
+                style: const TextStyle(
                   color: Colors.white
                 ),
                 backgroundColor: Colors.grey.withOpacity(0.3),
@@ -71,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     future: popularMovies, 
                     builder: (context, snapshot) {
                       if(snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: const CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       } else if(snapshot.hasError) {
                         return Center(child: Text('Bir hata oluştu: ${snapshot.error}'),);
                       } else if(snapshot.hasData && snapshot.data != null) {
@@ -79,30 +78,35 @@ class _SearchScreenState extends State<SearchScreen> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-              Text("Top Searches", style: TextStyle(
+              const Text("Top Searches", style: TextStyle(
                 fontWeight: FontWeight.bold
               ),),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: data!.length,
                 itemBuilder: (context, index) {
                   var movie = data[index];
-                  return Container(
-                    height: 150,
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        Image.network("${imageUrl}${movie.posterPath}"),
-                        SizedBox(width: 20,),
-                        SizedBox(
-                          width: 260,
-                          child: Text(data[index].title ?? "", maxLines: 2, overflow: TextOverflow.ellipsis,))
-                      ],
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailedScreen(movieID: data[index].id ?? 0,)));
+                    },
+                    child: Container(
+                      height: 150,
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          Image.network("${imageUrl}${movie.posterPath}"),
+                          const SizedBox(width: 20,),
+                          SizedBox(
+                            width: 260,
+                            child: Text(data[index].title ?? "", maxLines: 2, overflow: TextOverflow.ellipsis,))
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -110,13 +114,13 @@ class _SearchScreenState extends State<SearchScreen> {
                         ],
                       );
                       } else {
-                        return Center(child: Text('GÖSTERİLECEK FİLM YOK'),);
+                        return const Center(child: Text('GÖSTERİLECEK FİLM YOK'),);
                       }
                     },
                   ) :
-              searchMovieModel == null ? Center(child: SizedBox.shrink(),) : GridView.builder(
+              searchMovieModel == null ? const Center(child: SizedBox.shrink(),) : GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics:const NeverScrollableScrollPhysics(),
                 itemCount: searchMovieModel?.results!.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
@@ -125,24 +129,29 @@ class _SearchScreenState extends State<SearchScreen> {
                   childAspectRatio: 1.2 / 2 
                  ), 
                 itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      searchMovieModel!.results![index].backdropPath == null ? Image.asset('assets/netflix.png', height: 170,) : CachedNetworkImage(
-                        imageUrl: "${imageUrl}${searchMovieModel!.results?[index].backdropPath}",
-                         height: 170,
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailedScreen(movieID: searchMovieModel!.results![index].id ?? 0)));
+                    },
+                    child: Column(
+                      children: [
+                        searchMovieModel!.results![index].backdropPath == null ? Image.asset('assets/netflix.png', height: 170,) : CachedNetworkImage(
+                          imageUrl: "${imageUrl}${searchMovieModel!.results?[index].backdropPath}",
+                           height: 170,
+                          ),
+                        // CachedNetworkImage(
+                        //   imageUrl: getImageUrl(searchMovieModel?.results?[index].backdropPath,),
+                        //   placeholder: (context, url) => Center(child: CircularProgressIndicator(),),
+                        //   errorWidget: (context, url, error) => Icon(Icons.error),
+                        // ),
+                        Text(searchMovieModel?.results?[index].originalTitle ?? "", style: const TextStyle(
+                          fontSize: 14
                         ),
-                      // CachedNetworkImage(
-                      //   imageUrl: getImageUrl(searchMovieModel?.results?[index].backdropPath,),
-                      //   placeholder: (context, url) => Center(child: CircularProgressIndicator(),),
-                      //   errorWidget: (context, url, error) => Icon(Icons.error),
-                      // ),
-                      Text(searchMovieModel?.results?[index].originalTitle ?? "", style: TextStyle(
-                        fontSize: 14
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      )
-                    ],
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        )
+                      ],
+                    ),
                   );
                 },
               ),

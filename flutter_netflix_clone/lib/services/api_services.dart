@@ -1,5 +1,6 @@
 
 import 'package:flutter_netflix_clone/common/utils.dart';
+import 'package:flutter_netflix_clone/models/movie_detailed_models.dart';
 import 'package:flutter_netflix_clone/models/movie_recommendation_models.dart';
 import 'package:flutter_netflix_clone/models/search_movie_model.dart';
 import 'package:flutter_netflix_clone/models/tv_series_model.dart';
@@ -85,5 +86,40 @@ class ApiServices {
       return MovieRecommendationModel.fromJson(response.body);
     }
     throw Exception("Failed to load Popular movies");
+  }
+
+
+
+  Future<MovieDetailModels> getMovieDetail(int movieID) async {
+    endPoint="movie/$movieID";
+    final url="$baseUrl$endPoint$key";
+
+    print("movie detail url is $url");
+
+    final response = await http.get(Uri.parse(url),);
+
+    if(response.statusCode == 200) {
+      //log("Success Response: ${response.body}");
+
+      return MovieDetailModels.fromJson(response.body);
+    }
+    throw Exception("Failed to load Detail movies");
+  }
+
+
+  Future<MovieRecommendationModel> getRecommendationMovies(int movieID) async {
+    endPoint="movie/$movieID/recommendations";
+    final url="$baseUrl$endPoint$key";
+
+    print("recommendations url is $url");
+
+    final response = await http.get(Uri.parse(url),);
+
+    if(response.statusCode == 200) {
+      //log("Success Response: ${response.body}");
+
+      return MovieRecommendationModel.fromJson(response.body);
+    }
+    throw Exception("Failed to load more like movies");
   }
 }
