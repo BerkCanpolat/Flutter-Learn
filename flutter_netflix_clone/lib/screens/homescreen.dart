@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_netflix_clone/common/utils.dart';
+import 'package:flutter_netflix_clone/models/upcoming_model.dart';
+import 'package:flutter_netflix_clone/services/api_services.dart';
+import 'package:flutter_netflix_clone/widgets/movie_card_widget.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -8,12 +12,66 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  late Future<UpComingMovieModel> upcomingFuture;
+  late Future<UpComingMovieModel> nowPlayingFuture;
+  ApiServices apiServices = ApiServices();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    upcomingFuture = apiServices.getUpcomingMovies();
+    nowPlayingFuture = apiServices.getNowPlayingMovies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('HOME SCREEN'),
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: kBackgroundColor,
+          title: Image.asset(
+            'assets/logo.png',
+            height: 50,
+            width: 120,
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 30,
+                  )),
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Container(
+                height: 27,
+                width: 27,
+                color: Colors.blue,
+              ),
+            ),
+            const SizedBox(
+              width: 20,
+            )
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 220,
+                child: MovieCardWidget(
+                    future: upcomingFuture, headLineText: "Upcoming Movies"),
+              ),
+              SizedBox(
+                height: 220,
+                child: MovieCardWidget(
+                    future: nowPlayingFuture, headLineText: "Now Playing Movies"),
+              ),
+            ],
+          ),
+        ));
   }
 }
