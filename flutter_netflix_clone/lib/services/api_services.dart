@@ -1,4 +1,6 @@
+
 import 'package:flutter_netflix_clone/common/utils.dart';
+import 'package:flutter_netflix_clone/models/tv_series_model.dart';
 import 'package:flutter_netflix_clone/models/upcoming_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,5 +36,20 @@ class ApiServices {
       return UpComingMovieModel.fromJson(response.body);
     }
     throw Exception("Failed to load now playing movies");
+  }
+
+
+  Future<TvSeriesModel> getTvopRatedMovies() async {
+    endPoint="tv/top_rated";
+    final url="$baseUrl$endPoint$key";
+
+    final response = await http.get(Uri.parse(url));
+
+    if(response.statusCode == 200) {
+      //log("Success Response: ${response.body}");
+
+      return TvSeriesModel.fromJson(response.body);
+    }
+    throw Exception("Failed to load Top Rated movies");
   }
 }
