@@ -85,6 +85,7 @@ class _HomescreenState extends State<Homescreen> {
                 child: MovieCardWidget(
                     future: upcomingFuture, headLineText: "Upcoming Movies"),
               ),
+              SizedBox(height: 20,),
               SizedBox(
                 height: 220,
                 child: MovieCardWidget(

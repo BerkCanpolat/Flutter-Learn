@@ -33,7 +33,9 @@ class BottomNavBar extends StatelessWidget {
            unselectedLabelColor: Color(0xff999999),
           ),
         ),
-        body: TabBarView(children: [
+        body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          children: [
           Homescreen(),
           SearchScreen(),
           MoreScreen()

@@ -23,7 +23,13 @@ class CustomCarouselSlider extends StatelessWidget {
             onTap: () {
               
             },
-            child: CachedNetworkImage(imageUrl: "$imageUrl$url"));
+            child: Column(
+              children: [
+                CachedNetworkImage(imageUrl: "$imageUrl$url",),
+                const SizedBox(height: 20,),
+                Text(data.results[index].name)
+              ],
+            ));
         }, 
         options: CarouselOptions(
           height: (size.height * 0.33<300) ? 300 : size.height  * 0.33,
