@@ -142,6 +142,7 @@ class _MovieDetailedScreenState extends State<MovieDetailedScreen> {
                                       height: 20,
                                     ),
                                     GridView.builder(
+                                      padding: EdgeInsets.zero,
                                       itemCount: rec.results!.length,
                                       physics: const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
