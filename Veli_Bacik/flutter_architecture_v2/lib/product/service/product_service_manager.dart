@@ -8,7 +8,8 @@ import 'package:vexana/vexana.dart';
 final class ProductServiceManager extends NetworkManager<EmptyModel>{
   /// initialize
   ProductServiceManager.base():super(
-    options: BaseOptions(baseUrl: AppEnvironmentItems.baseUrl.value)
+    options: BaseOptions(baseUrl: AppEnvironmentItems.baseUrl.value, ),
+
   );
 
   /// Handle Error
