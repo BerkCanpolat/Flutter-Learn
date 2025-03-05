@@ -6,19 +6,19 @@ class Category {
 
 List<Category> categories = [
   Category(
-    emoji: 'assets/cinema/smiling-face.png',
+    emoji: 'assets/smiling-face.png',
     name: 'Romance',
   ),
   Category(
-    emoji: 'assets/cinema/grinning-face.png',
+    emoji: 'assets/grinning-face.png',
     name: 'Comedy',
   ),
   Category(
-    emoji: 'assets/cinema/horror.png',
+    emoji: 'assets/horror.png',
     name: 'Horror',
   ),
   Category(
-    emoji: 'assets/cinema/face.png',
+    emoji: 'assets/face.png',
     name: 'Drama',
   )
 ];
