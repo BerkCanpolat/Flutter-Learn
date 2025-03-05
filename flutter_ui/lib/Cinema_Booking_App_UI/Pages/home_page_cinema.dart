@@ -16,20 +16,28 @@ class _HomePageCinemaState extends State<HomePageCinema> {
   late PageController controller;
   double pageoffSet = 1;
   int currentIndex = 1;
+
   @override
   void initState() {
     // TODO: implement initState
     controller = PageController(
       initialPage: 1,
       viewportFraction: 0.6,
-
     )..addListener(() {
-      setState(() {
-        pageoffSet = controller.page!;
+        setState(() {
+          pageoffSet = controller.page!;
+        });
       });
-    });
     super.initState();
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,74 +99,91 @@ class _HomePageCinemaState extends State<HomePageCinema> {
             ),
           ),
           Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          'Showing this month',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Expanded(
-                          child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          PageView.builder(
-                            onPageChanged: (index) {
-                              setState(() {
-                                currentIndex == index % movies.length;
-                              });
-                            },
-                            controller: controller,
-                            //itemCount: movies.length,
-                            itemBuilder: (context, index) {
-                              double scale = max(0.6, (1 - (pageoffSet - index).abs() + 0.6));
-                              double angle = (controller.position.haveDimensions
-                                                ? index.toDouble() - (controller.page ?? 0)
-                                                : index.toDouble() - 1
-                                          ) * 5;
-                              final movie = movies[index % movies.length];
-                              return GestureDetector(
-                                onTap: () {
-                                  
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 30 - (scale/1.6*30)),
-                                  child: Stack(
-                                    alignment: Alignment.topCenter,
-                                    children: [
-                                      Transform.rotate(
-                                        angle: angle * pi/90,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          child: Image.network(
-                                            movie.poster,
-                                            height: 300,
-                                            width: 205,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          )
-                        ],
-                      )),
-                    ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Showing this month',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w800),
                   ),
                 ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Expanded(
+                    child: Stack(
+                      fit: StackFit.expand,
+                  alignment: Alignment.center,
+                  children: [
+                    PageView.builder(
+                      onPageChanged: (index) {
+                        setState(() {
+                          currentIndex = index % movies.length;
+                        });
+                      },
+                      controller: controller,
+                      itemBuilder: (context, index) {
+                        double scale =
+                            max(0.6, (1 - (pageoffSet - index).abs() + 0.6));
+                        double angle = (controller.position.haveDimensions
+                                ? index.toDouble() - (controller.page ?? 0)
+                                : index.toDouble() - 1) *
+                            5;
+                        final movie = movies[index % movies.length];
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding:
+                                EdgeInsets.only(top: 30 - (scale / 1.6 * 30)),
+                            child: Stack(
+                              alignment: Alignment.topCenter,
+                              children: [
+                                Transform.rotate(
+                                  angle: angle * pi / 90,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(25),
+                                    child: Image.network(
+                                      movie.poster,
+                                      height: 250,
+                                      width: 205,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    Positioned(
+                      top: 270,
+                      child: Row(
+                        children: List.generate(
+                          movies.length,
+                          (index) => AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            margin: const EdgeInsets.only(right: 15),
+                            width: currentIndex == index? 30:10,
+                            height: 10,
+                            decoration: BoxDecoration(
+                              color: currentIndex == index ? buttonColor: Colors.white24,
+                              borderRadius: BorderRadius.circular(15)
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),),
+              ],
+            ),
+          ),
         ],
       ),
     );
